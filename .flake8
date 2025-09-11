@@ -1,0 +1,7 @@
+[flake8]
+ignore = E2, E3, W, F
+select = E101, E111, E114, E115, E116, E117
+
+
+
+#flake8 .     in terminal to check for errors
