@@ -6,7 +6,7 @@ from common.models import BaseModel
 class Category(BaseModel):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='category_image/%Y/%m/%d/', blank=True, null=True)
+    image = models.ImageField(upload_to='category_image/%Y/%m/%d/',blank=True, null=True)
     description = models.TextField(blank=True, max_length=500,null=True)
     status = models.BooleanField(default=False, help_text="0=default, 1=Hidden")
     trending = models.BooleanField(default=False, help_text="0=default, 1=Trending")

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="py-3 bg-primary">
+    <div class="container">
+        <a class="text-white" href="{% url 'store:home' %}">Home /</a>
+        <a class="text-white" href="{% url 'store:collection' %}">Collections</a>
+
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Collections</h1>
+            <hr>
+            <div class="row">
+                {% for i in category %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <a class="text-white" href="{% url 'store:collectionview' i.slug %}">
+
+                            <div class="card-body">
+                                <div class="category-image">
+                                    <img class="w-100" src="{{ i.image.url }}" alt="">
+                                </div>
+                                <h4 class="text-center"   >{{ i.name }}</h4>
+                            </div>
+                        </a class="text-white">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

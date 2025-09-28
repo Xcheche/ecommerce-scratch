@@ -36,3 +36,7 @@ class Product(BaseModel):
             models.Index(fields=['name']),
             models.Index(fields=['slug']),
         ]
+    #Absolute URL
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('store:productview', args=[self.category.slug, self.slug])

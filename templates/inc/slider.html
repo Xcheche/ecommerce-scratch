@@ -1,0 +1,31 @@
+{% load static %}
+<div id="carouselExampleIndicators"  height="400px" class="carousel slide">
+    <div  height="400px" class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"  height="400px" class="active"
+            aria-current="true" aria-label="Slide banners/1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="banners/1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div  height="400px" class="carousel-inner">
+        <div  height="400px" class="carousel-item active">
+            <img src="{% static 'images/banners/1.jpg' %}"  height="400px" class="d-block w-100" alt="...">
+        </div>
+        <div  height="400px" class="carousel-item">
+            <img src="{% static 'images/banners/1.jpg' %}"  height="400px" class="d-block w-100" alt="...">
+        </div>
+        <div  height="400px" class="carousel-item">
+            <img src="{% static 'images/banners/1.jpg' %}"  height="400px" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button  height="400px" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span  height="400px" class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span  height="400px" class="visually-hidden">Previous</span>
+    </button>
+    <button  height="400px" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span  height="400px" class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span  height="400px" class="visually-hidden">Next</span>
+    </button>
