@@ -2,6 +2,7 @@ from django.db import models
 from django.test import tag
 from category.models import Category 
 from common.models import BaseModel
+from django.urls import reverse
 # Create your models here.
 
 # Model for product
@@ -21,6 +22,7 @@ class Product(BaseModel):
     meta_title = models.CharField(max_length=150, blank=True, null=True)
     meta_keywords = models.CharField(max_length=150, blank=True, null=True)
     meta_description = models.TextField(max_length=500, blank=True, null=True)
+    stock = models.IntegerField(null=False, blank=False,default=0)
    
 
 
@@ -38,5 +40,5 @@ class Product(BaseModel):
         ]
     #Absolute URL
     def get_absolute_url(self):
-        from django.urls import reverse
+     
         return reverse('store:productview', args=[self.category.slug, self.slug])

@@ -5,8 +5,8 @@ from .models import  Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'quantity', 'status')
-    list_editable = ('quantity', 'status')
+    list_display = ('id', 'name', 'quantity', 'status','trending','tags','stock')
+    list_editable = ('quantity', 'status','tags','trending','stock')
     search_fields = ('name', 'category__name')
     list_per_page = 10
     prepopulated_fields ={'slug': ('name',)}
