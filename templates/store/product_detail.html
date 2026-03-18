@@ -5,8 +5,8 @@
 <div class="py-3 bg-primary">
     <div class="container">
         <a class="text-white" href="{% url 'store:home' %}">Home /</a>
-        <a class="text-white" href="{% url 'store:collection' %}">Collections /</a>
-        <a class="text-white" href="{% url 'store:collectionview' product.category.slug %}">
+        <a class="text-white" href="{% url 'store:category_list' %}">Categories /</a>
+        <a class="text-white" href="{% url 'store:category_detail' product.category.slug %}">
             {{ product.category.name }}
         </a> /
         <span class="text-white">{{ product.name }}</span>

@@ -5,78 +5,68 @@ from django.shortcuts import render, get_object_or_404
 from category.models import Category
 from .models import Product
 
-# Create your views here.
+
+# ==========================================================
+# Store Views
+# ==========================================================
+# These views handle:
+# 1) Home page
+# 2) Category listing and category product listing
+# 3) Product detail page
 
 
-#------Home----------------------------------------------
 def home(request):
+    """Display the main store homepage."""
     return render(request, 'store/index.html')
 
 
 
 
-#--------------Category listing  view----------------------------
-def collection(request):
-    category = Category.objects.filter(status=0)
+def category_list(request):
+    """Display all active categories.
+
+    A category is considered active when `status=0`.
+    """
+    categories = Category.objects.filter(status=0)
     context = {
-        'category':category
+        'categories': categories
     }
-    return render(request,'store/collections.html',context)
+    return render(request, 'store/category_list.html', context)
 
 
 
 
 
-#--------------Category view----------------------------
-# def collectionview(request, slug):
-#     if Category.objects.filter(slug=slug, status=0).exists():
-#         products = Product.objects.filter(category__slug=slug)
-#         category_name = Category.objects.filter(slug=slug).first()
-#         context = {
-#             'products': products,
-#             'category_name': category_name
-#         }
-#         return render(request, 'products/index.html', context)
-#     else:
-#         messages.warning(request, "No such category found")
-#         return redirect('store:collection')
+# ----------------------------------------------------------
+# Category detail view (shows products in one category)
+# ----------------------------------------------------------
+def category_detail(request, slug):
+    """Display products for a single active category by slug.
 
-# Using get_object_or_404 for cleaner code
-def collectionview(request, slug):
+    Returns 404 automatically if the category does not exist
+    or is not active.
+    """
     category = get_object_or_404(Category, slug=slug, status=0)
     products = Product.objects.filter(category=category)
 
     context = {
         'products': products,
-        'category_name': category
+        'category': category
     }
-    return render(request, 'products/index.html', context)    
+    return render(request, 'store/category_detail.html', context)    
 
 
-#----------------Product detail view----------------------------
+# ----------------------------------------------------------
+# Product detail view
+# ----------------------------------------------------------
+def product_detail(request, cate_slug, prod_slug):
+    """Display one active product in a given category.
 
-# def productview(request, cate_slug, prod_slug):
-#     if Category.objects.filter(slug=cate_slug, status=0).exists():
-#         if Product.objects.filter(slug=prod_slug, status=0).exists():
-#             product = Product.objects.filter(slug=prod_slug, status=0).first()
-#             context = {
-#                 'product': product
-#             }
-#             return render(request, 'products/view.html', context)
-#         else:
-#             messages.error(request, "No such product found")
-#             return redirect('store:collection')
-#     else:
-#         messages.error(request, "No such category found")
-#         return redirect('store:collection')
-
-
-
-
-#----Modified productview using get_object_or_404 for cleaner code
-def productview(request, cate_slug, prod_slug):
+    Looks up the product by both category slug and product slug,
+    then returns 404 if no matching active product is found.
+    """
     product = get_object_or_404(Product, category__slug=cate_slug, slug=prod_slug, status=False)
     context = {
         'product': product
     }
-    return render(request, 'products/view.html', context)
+    return render(request, 'store/product_detail.html', context)

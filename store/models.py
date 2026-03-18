@@ -40,5 +40,4 @@ class Product(BaseModel):
         ]
     #Absolute URL
     def get_absolute_url(self):
-     
-        return reverse('store:productview', args=[self.category.slug, self.slug])
+        return reverse('store:product_detail', args=[self.category.slug, self.slug])
